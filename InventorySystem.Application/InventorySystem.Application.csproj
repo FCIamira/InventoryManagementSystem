@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="DTOs\CategoryDTOs\" />
+    <Folder Include="DTOs\WhereHosingProductDTOs\" />
+    <Folder Include="DTOs\NotificationDTOs\" />
+    <Folder Include="DTOs\TransactionTypeDTOs\" />
+    <Folder Include="DTOs\ProductDTOs\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="MediatR" Version="12.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
+	  <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.12.1" />
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.12.1" />
+
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InventorySystem.Domain\InventorySystem.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
