@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventorySystem.Infrastructure.Repositories
 {
@@ -17,6 +18,16 @@ namespace InventorySystem.Infrastructure.Repositories
         {
             context = _context;
         }
+        public async Task<IEnumerable<Transaction_History>> GetAllWithDetails()
+        {
+            return await context.TransactionHistories
+                .Include(x => x.Product)
+                .Include(x => x.FromWarehouse)
+                .Include(x => x.ToWarehouse)
+                .Include(x => x.Transaction_Type)
+                .ToListAsync();
+        }
+
 
     }
 }

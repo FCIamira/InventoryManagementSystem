@@ -9,5 +9,7 @@ namespace InventorySystem.Domain.Interfaces
 {
     public interface ITransaction_History:IGenericRepo<Transaction_History,Guid>
     {
+        public  Task<IEnumerable<Transaction_History>> GetAllWithDetails();
+
     }
 }

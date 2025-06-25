@@ -14,12 +14,12 @@ using InventorySystem.Domain.Enum;
 
 namespace InventorySystem.Application.CQRS.Stocks.Queries
 {
-    public class StockGetAll: IRequest<Result<IEnumerable<RemoveStockDTO>>>
+    public class StockGetAll: IRequest<Result<IEnumerable<GetAllStock>>>
     {
 
     }
 
-    public class StockGetAllHandler : IRequestHandler<StockGetAll, Result<IEnumerable<RemoveStockDTO>>>
+    public class StockGetAllHandler : IRequestHandler<StockGetAll, Result<IEnumerable<GetAllStock>>>
     {
         private readonly IMapper _mapper;
         private readonly ILogger<StockGetAllHandler> _logger;
@@ -33,27 +33,28 @@ namespace InventorySystem.Application.CQRS.Stocks.Queries
             _logger = logger;
         }
 
-        public async Task<Result<IEnumerable<RemoveStockDTO>>> Handle(StockGetAll request, CancellationToken cancellationToken)
+        public async Task<Result<IEnumerable<GetAllStock>>> Handle(StockGetAll request, CancellationToken cancellationToken)
         {
             try
             {
                 _logger.LogInformation("Retrieving all stock transaction histories");
 
-                var transactions = await _unitOfWork.TransactionHistory.GetAll();
+                //var transactions = await _unitOfWork.TransactionHistory.GetAll();
+                var transactions = await _unitOfWork.TransactionHistory.GetAllWithDetails();
 
                 if (transactions == null || !transactions.Any())
                 {
-                    return Result<IEnumerable<RemoveStockDTO>>.Failure(ErrorCode.NotFound, "No stock records found.");
+                    return Result<IEnumerable<GetAllStock>>.Failure(ErrorCode.NotFound, "No stock records found.");
                 }
 
-                var dtoList = _mapper.Map<IEnumerable<RemoveStockDTO>>(transactions);
+                var dtoList = _mapper.Map<IEnumerable<GetAllStock>>(transactions);
 
-                return Result<IEnumerable<RemoveStockDTO>>.Success(dtoList);
+                return Result<IEnumerable<GetAllStock>>.Success(dtoList);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error occurred while retrieving stock data.");
-                return Result<IEnumerable<RemoveStockDTO>>.Failure(ErrorCode.ServerError, "Error occurred while retrieving stock data.");
+                return Result<IEnumerable<GetAllStock>>.Failure(ErrorCode.ServerError, "Error occurred while retrieving stock data.");
             }
         }
     }
