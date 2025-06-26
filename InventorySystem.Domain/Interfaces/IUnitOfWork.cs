@@ -18,7 +18,7 @@ namespace InventorySystem.Domain.Interfaces
         IWhereHosing WhereHosing { get; }
         IWhereHosing_Product WhereHosing_Product { get; }
         INotificationRepo Notification { get; }
-
+        IStockCheckerService StockChecker {  get; }
         Task SaveChangesAsync();
         Task BeginTransactionAsync();
         Task CommitAsync();

@@ -23,7 +23,7 @@ namespace InventorySystem.Infrastructure.Repositories
         private IWhereHosing _WhereHosingRepository;
         private INotificationRepo _notificationRepository;
         private IWhereHosing_Product _WhereHosingProductRepository;
-
+        private IStockCheckerService _StockChecker;
         public UnitOfWork(ApplicationContext  applicationDBContext)
         {
             _context = applicationDBContext;
@@ -129,6 +129,20 @@ namespace InventorySystem.Infrastructure.Repositories
         }
         #endregion
 
+
+        #region StockChecker
+        public IStockCheckerService StockChecker
+        {
+            get
+            {
+                if (_StockChecker is null)
+                {
+                    _StockChecker = new StockCheckRepo(_context);
+                }
+                return _StockChecker;
+            }
+        }
+        #endregion
 
         public async Task BeginTransactionAsync()
         {

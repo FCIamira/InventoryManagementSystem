@@ -1,4 +1,5 @@
 
+using Hangfire;
 using InventorySystem.API.MiddleWare;
 using InventorySystem.Application.CQRS.Products.Commands;
 using InventorySystem.Application.Helper.Mapper;
@@ -6,6 +7,7 @@ using InventorySystem.Domain.Interfaces;
 using InventorySystem.Domain.Models;
 using InventorySystem.Infrastructure.Context;
 using InventorySystem.Infrastructure.Repositories;
+using InventorySystem.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +44,7 @@ namespace InventorySystem.API
             #endregion
 
             builder.Services.AddControllers();
+            builder.Services.AddScoped<IStockCheckerService, StockCheckerService>();
 
             #region JWT
 
@@ -84,7 +87,9 @@ namespace InventorySystem.API
             {
                 cfg.RegisterServicesFromAssembly(typeof(AddProductCommandHandler).Assembly);
             });
-
+            builder.Services.AddHangfire(config =>
+ config.UseSqlServerStorage(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddHangfireServer();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
 
@@ -139,16 +144,27 @@ namespace InventorySystem.API
 
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
+            //if (app.Environment.IsDevelopment())
+            //{
                 app.UseSwagger();//System.ArgumentException: 'Cannot instantiate implementation type 'InventorySystem.Domain.Interfaces.IGenericRepo`1[T]' for service type 'InventorySystem.Domain.Interfaces.IGenericRepo`1[T]'.'
 
                 app.UseSwaggerUI();
-            }
+            //}
             app.UseMiddleware<GlobalErrorHandle>();
 
             app.UseAuthorization();
+            app.UseHangfireDashboard("/dashboard");
+            //RecurringJob.AddOrUpdate<IStockCheckerService>(
+            //    "check-low-stock-test",
+            //    service => service.CheckLowStockAsync(),
+            //    Cron.Minutely());
 
+
+
+            RecurringJob.AddOrUpdate<IStockCheckerService>(
+    "check-low-stock-daily",
+    service => service.CheckLowStockAsync(),
+    Cron.Daily(1));
 
             app.MapControllers();
 
