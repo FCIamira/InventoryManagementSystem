@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using InventorySystem.Application.DTOs.WhereHosingDTOs;
-using InventorySystem.Application.CQRS.WhereHosings.Queries;
+using InventorySystem.Application.Feature.WhereHosings.Queries;
 using InventorySystem.Application.Validators;
-using InventorySystem.DAL.CQRS.WhereHosings.Commands;
-using InventorySystem.Application.CQRS.WhereHosings.Commands;
+using InventorySystem.DAL.Feature.WhereHosings.Commands;
+using InventorySystem.Application.Feature.WhereHosings.Commands;
 
 namespace InventorySystem.Api.Controllers
 {

@@ -1,12 +1,11 @@
-﻿
-using InventorySystem.Application.CQRS.Stocks.Queries;
-using InventorySystem.Application.CQRS.TransactionHistory.Orchestrator;
-using InventorySystem.Application.CQRS.TransactionsHistory.Commands;
+﻿using InventorySystem.Application.Feature.TransactionHistory.Orchestrator;
+using InventorySystem.Application.Feature.TransactionsHistory.Commands;
 using InventorySystem.Application.DTOs.TransactionHistoryDTOs;
 using InventorySystem.Application.Validators;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using InventorySystem.Application.Feature.TransactionHistory.Queries;
 
 namespace InventorySystem.Api.Controllers
 {

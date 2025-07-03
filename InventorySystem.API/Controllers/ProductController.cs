@@ -1,9 +1,9 @@
-﻿using InventoryMangmentSystem.DAL.CQRS.Products.Commands;
-using InventorySystem.Application.CQRS.Products.Commands;
-using InventorySystem.Application.CQRS.Products.Queries;
+﻿using InventoryMangmentSystem.DAL.Feature.Products.Commands;
+using InventorySystem.Application.Feature.Products.Commands;
+using InventorySystem.Application.Feature.Products.Queries;
 using InventorySystem.Application.DTOs.ProductDTOs;
 using InventorySystem.Application.Validators;
-using InventorySystem.DAL.CQRS.Products.Queries;
+using InventorySystem.DAL.Feature.Products.Queries;
 using InventorySystem.Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

@@ -1,5 +1,5 @@
 ﻿
-using InventorySystem.Application.CQRS.WhereHosing_Products.Commands;
+using InventorySystem.Application.Feature.WhereHosing_Products.Commands;
 using InventorySystem.Application.DTOs.WhereHosingProductDTOs;
 using InventorySystem.Application.Validators;
 using MediatR;

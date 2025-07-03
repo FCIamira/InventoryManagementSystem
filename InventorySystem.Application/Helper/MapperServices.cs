@@ -30,6 +30,7 @@ namespace InventorySystem.Application.Mapping
                 return Mapper.Map<TDestination>(source);
             }
         }
+
     }
 
 }

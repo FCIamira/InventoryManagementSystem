@@ -1,7 +1,7 @@
 
 using Hangfire;
 using InventorySystem.API.MiddleWare;
-using InventorySystem.Application.CQRS.Products.Commands;
+using InventorySystem.Application.Feature.Products.Commands;
 using InventorySystem.Application.Helper.Mapper;
 using InventorySystem.Domain.Interfaces;
 using InventorySystem.Domain.Models;

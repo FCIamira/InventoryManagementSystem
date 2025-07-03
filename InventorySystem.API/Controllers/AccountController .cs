@@ -1,4 +1,4 @@
-﻿using InventorySystem.Application.CQRS.Account.Orchestrator;
+﻿using InventorySystem.Application.Feature.Account.Orchestrator;
 using InventorySystem.Application.DTOs.Account;
 using InventorySystem.Application.Validators;
 using InventorySystem.Domain.Enum;

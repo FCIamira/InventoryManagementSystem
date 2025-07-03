@@ -1,11 +1,11 @@
 ﻿using InventorySystem.Application.DTOs.CategoryDTOs;
 using InventorySystem.Application.Validators;
-using InventorySystem.Application.CQRS.Categories.Queries;
+using InventorySystem.Application.Feature.Categories.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using InventorySystem.Application.CQRS.Categories.Commands;
-using InventorySystem.Application.CQRS.Categories.Orchestrator;
+using InventorySystem.Application.Feature.Categories.Commands;
+using InventorySystem.Application.Feature.Categories.Orchestrator;
 
 namespace InventorySystem.Api.Controllers
 {

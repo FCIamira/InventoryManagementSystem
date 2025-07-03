@@ -1,4 +1,4 @@
-﻿using InventorySystem.Application.CQRS.Reports.ProductsWithLowStockQuery;
+﻿using InventorySystem.Application.Feature.Reports.ProductsWithLowStockQuery;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
